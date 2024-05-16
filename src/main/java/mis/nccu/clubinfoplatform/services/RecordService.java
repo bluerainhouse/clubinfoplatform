@@ -1,17 +1,17 @@
-package mis.nccu.clubinfoplatform.services;
+// package mis.nccu.clubinfoplatform.services;
 
-import java.util.List;
+// import java.util.List;
 
-import mis.nccu.clubinfoplatform.models.Record;
-public interface RecordService {
-	public List<Record> getAll();
+// import mis.nccu.clubinfoplatform.models.Record;
+// public interface RecordService {
+// 	public List<Record> getAll();
 	
-	public Record getById(int id);
+// 	public Record getById(int id);
 	
-	public void saveOrUpdate(Record record);
+// 	public void saveOrUpdate(Record record);
 	
-	public void delete(int id);
+// 	public void delete(int id);
 	
-	public List<Record> getAllByLogin(String login);
-}
+// 	public List<Record> getAllByLogin(String login);
+// }
 

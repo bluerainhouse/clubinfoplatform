@@ -19,13 +19,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import mis.nccu.clubinfoplatform.security.jwt.AuthEntryPointJwt;
 import mis.nccu.clubinfoplatform.security.jwt.AuthTokenFilter;
-import mis.nccu.clubinfoplatform.security.services.UserDetailsServiceImpl;
+// import mis.nccu.clubinfoplatform.security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableMethodSecurity
 public class WebSecurityConfig {
-  @Autowired
-  UserDetailsServiceImpl userDetailsService;
+  // @Autowired
+  // UserDetailsServiceImpl userDetailsService;
 
   @Autowired
   private AuthEntryPointJwt unauthorizedHandler;
@@ -68,7 +68,7 @@ public class WebSecurityConfig {
               .anyRequest().authenticated()
         );
     
-    http.authenticationProvider(authenticationProvider());
+    // http.authenticationProvider(authenticationProvider());
 
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     
