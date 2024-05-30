@@ -21,60 +21,52 @@ public class Announcement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ano_id")
-    private Long anoID;
+    private Long id;
 
     @Column(name = "club_id", nullable = false)
-    private Long clubID;
+    private Long clubId;
 
     @Column(name = "user_id", nullable = false)
-    private Long userID;
+    private Long userId;
 
-    @Column(nullable = false)
+    @Column(name = "content")
     private String content;
 
     @Column(name = "ins_date", nullable = false)
     private Date insDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "club_manager_id", nullable = false)
-    private ClubManager clubManager;
-
-    @OneToMany(mappedBy = "announcement", cascade = CascadeType.ALL)
-    private Set<Stars> stars = new HashSet<>();
-
     public Announcement() {
     }
 
-    public Announcement(Long clubID, Long userID, String content, Date insDate, ClubManager clubManager) {
-        this.clubID = clubID;
-        this.userID = userID;
+    public Announcement(Long clubId, Long userId, String content, Date insDate) {
+        this.clubId = clubId;
+        this.userId = userId;
         this.content = content;
         this.insDate = insDate;
-        this.clubManager = clubManager;
     }
 
-    public Long getAnoID() {
-        return anoID;
+    public Long getId() {
+        return id;
     }
 
-    public void setAnoID(Long anoID) {
-        this.anoID = anoID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getClubID() {
-        return clubID;
+    public Long getClubId() {
+        return clubId;
     }
 
-    public void setClubID(Long clubID) {
-        this.clubID = clubID;
+    public void setClubId(Long clubId) {
+        this.clubId = clubId;
     }
 
-    public Long getUserID() {
-        return userID;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getContent() {
@@ -91,21 +83,5 @@ public class Announcement {
 
     public void setInsDate(Date insDate) {
         this.insDate = insDate;
-    }
-
-    public ClubManager getClubManager() {
-        return clubManager;
-    }
-
-    public void setClubManager(ClubManager clubManager) {
-        this.clubManager = clubManager;
-    }
-
-    public Set<Stars> getStars() {
-        return stars;
-    }
-
-    public void setStars(Set<Stars> stars) {
-        this.stars = stars;
     }
 }

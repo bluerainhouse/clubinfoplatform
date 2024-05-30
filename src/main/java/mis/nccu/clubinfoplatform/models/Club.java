@@ -18,35 +18,31 @@ public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "club_id")
-    private Long clubID;
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "club_name", nullable = false)
     private String clubName;
 
-    @Column(nullable = false)
+    @Column(name = "type", nullable = false)
     private String type;
 
-    @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Follows> follows = new HashSet<>();
-
-    @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Joins> joins = new HashSet<>();
+    @Column(name = "data")
+    private String data;
 
     public Club() {
     }
 
-    public Club(Long clubID, String clubName, String type) {
-        this.clubID = clubID;
+    public Club(String clubName, String type) {
         this.clubName = clubName;
         this.type = type;
     }
 
-    public Long getClubID() {
-        return clubID;
+    public Long getId() {
+        return id;
     }
 
-    public void setClubID(Long clubID) {
-        this.clubID = clubID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getClubName() {
@@ -65,19 +61,11 @@ public class Club {
         this.type = type;
     }
 
-    public Set<Follows> getFollows() {
-        return follows;
+    public String getData() {
+        return data;
     }
 
-    public void setFollows(Set<Follows> follows) {
-        this.follows = follows;
-    }
-
-    public Set<Joins> getJoins() {
-        return joins;
-    }
-
-    public void setJoins(Set<Joins> joins) {
-        this.joins = joins;
+    public void setData(String data) {
+        this.data = data;
     }
 }

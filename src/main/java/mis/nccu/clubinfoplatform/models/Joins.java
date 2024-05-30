@@ -1,39 +1,52 @@
 package mis.nccu.clubinfoplatform.models;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.Table;
-import mis.nccu.clubinfoplatform.models.ids.JoinsId;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "joins")
 public class Joins {
 
-    @EmbeddedId
-    private JoinsId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("userId")
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("clubId")
-    @JoinColumn(name = "club_id")
-    private Club club;
+    @Column(name = "user_id")
+    private Long userId;
+    @Column(name = "club_id")
+    private Long clubId;
 
     public Joins() {
     }
 
-    public Joins(JoinsId id, User user, Club club) {
+    public Joins(Long id, Long userId, Long clubId) {
         this.id = id;
-        this.user = user;
-        this.club = club;
+        this.userId = userId;
+        this.clubId = clubId;
     }
 
-    // getters and setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getClubId() {
+        return clubId;
+    }
+
+    public void setClubId(Long clubId) {
+        this.clubId = clubId;
+    }
 }
