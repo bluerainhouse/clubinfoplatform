@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "joins")
-public class Joins {
+@Table(name = "star_club")
+public class StarClub {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -21,4 +21,9 @@ public class Joins {
 
     @Column(name = "club_id")
     private Long clubId;
+
+    public StarClub(Long userId, Long clubId){
+        this.userId = userId;
+        this.clubId = clubId;
+    }
 }

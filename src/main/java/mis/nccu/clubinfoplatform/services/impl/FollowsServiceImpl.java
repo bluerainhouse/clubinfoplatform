@@ -1,10 +1,10 @@
 package mis.nccu.clubinfoplatform.services.impl;
 
 import mis.nccu.clubinfoplatform.models.Follows;
+import mis.nccu.clubinfoplatform.payload.request.FollowRequest;
 import mis.nccu.clubinfoplatform.repository.FollowsRepository;
 import mis.nccu.clubinfoplatform.services.FollowsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +16,8 @@ public class FollowsServiceImpl implements FollowsService {
     FollowsRepository followsRepository;
 
     @Override
-    public List<Follows> getByClubId(Long clubId) {
-        return followsRepository.findByClubId(clubId);
+    public List<Follows> getByUserId(Long userId) {
+        return followsRepository.findByUserId(userId);
     }
 
     @Override
@@ -26,8 +26,16 @@ public class FollowsServiceImpl implements FollowsService {
     }
 
     @Override
-    public void saveOrUpdate(Follows follows) {
+    public void update(Long id, FollowRequest followRequest) {
+        Follows follows = getById(id);
+        follows.setActivityId(followRequest.getActivityId());
+        follows.setUserId(followRequest.getUserId());
         followsRepository.save(follows);
+    }
+
+    @Override
+    public void save(FollowRequest followRequest) {
+        followsRepository.save(new Follows(followRequest.getUserId(), followRequest.getActivityId()));
     }
 
 }

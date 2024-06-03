@@ -16,11 +16,11 @@ public class Follows {
     private Long id;
     @Column(name = "user_id")
     private Long userId;
-    @Column(name = "club_id")
-    private Long clubId;
-    public Follows(Long userId, Long clubId) {
+    @Column(name = "activity_id")
+    private Long activityId;
+    public Follows(Long userId, Long activityId) {
         this.userId = userId;
-        this.clubId = clubId;
+        this.activityId = activityId;
     }
 }
 

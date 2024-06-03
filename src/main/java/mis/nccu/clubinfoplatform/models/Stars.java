@@ -21,4 +21,9 @@ public class Stars {
 
     @Column(name = "ano_id")
     private Long anoId;
+
+    public Stars(Long userId, Long anoId){
+        this.userId = userId;
+        this.anoId = anoId;
+    }
 }

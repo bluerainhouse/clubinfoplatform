@@ -2,7 +2,7 @@ package mis.nccu.clubinfoplatform.services.impl;
 
 import mis.nccu.clubinfoplatform.models.Follows;
 import mis.nccu.clubinfoplatform.repository.FollowsRepository;
-import mis.nccu.clubinfoplatform.services.FollowsService;
+import mis.nccu.clubinfoplatform.services.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +10,13 @@ import java.util.List;
 
 
 @Service
-public class AnnouncementServiceImpl implements FollowsService {
+public class AnnouncementServiceImpl implements AnnouncementService {
     @Autowired
     FollowsRepository followsRepository;
 
     @Override
     public List<Follows> getByClubId(Long clubId) {
-        return followsRepository.findByClubId(clubId);
+        return followsRepository.findByUserId(clubId);
     }
 
     @Override

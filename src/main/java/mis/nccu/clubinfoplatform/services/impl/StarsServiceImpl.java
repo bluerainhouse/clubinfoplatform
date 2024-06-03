@@ -1,8 +1,9 @@
 package mis.nccu.clubinfoplatform.services.impl;
 
-import mis.nccu.clubinfoplatform.models.Follows;
-import mis.nccu.clubinfoplatform.repository.FollowsRepository;
-import mis.nccu.clubinfoplatform.services.FollowsService;
+import mis.nccu.clubinfoplatform.models.Stars;
+import mis.nccu.clubinfoplatform.payload.request.StarRequest;
+import mis.nccu.clubinfoplatform.repository.StarsRepository;
+import mis.nccu.clubinfoplatform.services.StarsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,24 +11,24 @@ import java.util.List;
 
 
 @Service
-public class StarsServiceImpl implements FollowsService {
+public class StarsServiceImpl implements StarsService {
+
     @Autowired
-    FollowsRepository followsRepository;
+    StarsRepository starsRepository;
 
     @Override
-    public List<Follows> getByClubId(Long clubId) {
-        return followsRepository.findByClubId(clubId);
+    public List<Stars> getByUserIdAndAnoId(Long userId, Long anoId) {
+        return starsRepository.findByUserIdAndAnoId(userId, anoId);
     }
 
     @Override
-    public Follows getById(Long id) {
-        return followsRepository.findById(id).orElseThrow(() -> new RuntimeException("找不到追蹤" + id));
+    public void save(StarRequest starRequest) {
+        starsRepository.save(new Stars(starRequest.getUserId(), starRequest.getAnoId()));
     }
 
     @Override
-    public void saveOrUpdate(Follows follows) {
-        followsRepository.save(follows);
+    public void delete(Long id) {
+        starsRepository.deleteById(id);
     }
-
 }
 

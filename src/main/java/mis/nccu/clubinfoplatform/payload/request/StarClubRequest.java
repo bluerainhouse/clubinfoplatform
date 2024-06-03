@@ -5,16 +5,16 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class FollowRequest {
+public class StarClubRequest {
 	@NotBlank
 	@JsonProperty("user_id")
 	private Long userId;
 	@NotBlank
-	@JsonProperty("activity_id")
-	private Long activityId;
+	@JsonProperty("club_id")
+	private Long clubId;
 
-	public FollowRequest(Long userId, Long activityId) {
+	public StarClubRequest(Long userId, Long anoId) {
 		this.userId = userId;
-		this.activityId = activityId;
+		this.clubId = anoId;
 	}
 }

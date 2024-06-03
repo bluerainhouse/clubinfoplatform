@@ -1,15 +1,17 @@
 package mis.nccu.clubinfoplatform.services;
 
 import mis.nccu.clubinfoplatform.models.Follows;
+import mis.nccu.clubinfoplatform.models.Stars;
+import mis.nccu.clubinfoplatform.payload.request.StarRequest;
 
 import java.util.List;
 
 public interface StarsService {
-    List<Follows> getByClubId(Long id);
+    List<Stars> getByUserIdAndAnoId(Long userId, Long anoId);
 
-    Follows getById(Long id);
+    void save(StarRequest starRequest);
 
-    void saveOrUpdate(Follows follows);
+    void delete(Long id);
 
 
 }
