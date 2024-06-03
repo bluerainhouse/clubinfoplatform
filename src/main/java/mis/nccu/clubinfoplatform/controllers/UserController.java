@@ -8,21 +8,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
 	@Autowired
 	UserService userService;
-	@GetMapping("/")
+	@GetMapping("/detail")
 	public User getByUserId(@RequestParam("userId") Long userId) {
 		return userService.getUser(userId);
 	}
 
-	@PostMapping("/update/{userId}")
-	public ResponseEntity updateUser(@RequestParam Long userId, @RequestBody UserUpdateRequest userUpdateRequest){
-		userService.updateUser(userId, userUpdateRequest);
+	@GetMapping("/test")
+	public String test(){
+		return "test";
+	}
+
+	@PostMapping("/update")
+	public ResponseEntity updateUser(@RequestBody UserUpdateRequest userUpdateRequest){
+		userService.updateUser(userUpdateRequest);
 		return ResponseEntity.ok(new MessageResponse("User updated successfully!"));
 	}
 }

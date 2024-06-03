@@ -14,11 +14,11 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public void updateUser(Long userId, UserUpdateRequest userUpdateRequest) {
-        User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("No User Found!"));
+    public void updateUser(UserUpdateRequest userUpdateRequest) {
+        User user = userRepository.findById(userUpdateRequest.getUserId()).orElseThrow(()-> new RuntimeException("No User Found!"));
         user.setFullName(userUpdateRequest.getFullName());
         user.setClubId(userUpdateRequest.getClubId());
-        user.setSelfIntro(user.getSelfIntro());
+        user.setSelfIntro(userUpdateRequest.getSelfIntro());
         userRepository.save(user);
     }
 

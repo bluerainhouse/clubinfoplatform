@@ -6,5 +6,4 @@ import mis.nccu.clubinfoplatform.models.Club;
 
 @Repository
 public interface ClubRepository extends JpaRepository<Club, Long> {
-
 }

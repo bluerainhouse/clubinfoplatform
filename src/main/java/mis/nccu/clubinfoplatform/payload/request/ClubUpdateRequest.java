@@ -5,21 +5,16 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mis.nccu.clubinfoplatform.models.vo.ClubData;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserUpdateRequest {
-	@NotBlank
-	@JsonProperty("userId")
-	private Long userId;
-	@NotBlank
-	@JsonProperty("fullName")
-	private String fullName;
+public class ClubUpdateRequest {
 	@NotBlank
 	@JsonProperty("clubId")
 	private Long clubId;
 	@NotBlank
-	@JsonProperty("selfIntro")
-	private String selfIntro;
+	@JsonProperty("data")
+	private ClubData data;
 }

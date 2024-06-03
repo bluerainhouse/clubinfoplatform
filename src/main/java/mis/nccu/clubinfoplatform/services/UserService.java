@@ -5,7 +5,7 @@ import mis.nccu.clubinfoplatform.payload.request.UserUpdateRequest;
 
 public interface UserService {
 
-    void updateUser(Long userId, UserUpdateRequest userUpdateRequest);
+    void updateUser(UserUpdateRequest userUpdateRequest);
 
     User getUser(Long userId);
 }
