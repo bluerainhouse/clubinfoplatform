@@ -7,20 +7,18 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "follows")
-public class Follows {
+@NoArgsConstructor
+@Table(name = "Stars")
+public class Stars {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
     @Column(name = "user_id")
     private Long userId;
-    @Column(name = "club_id")
-    private Long clubId;
-    public Follows(Long userId, Long clubId) {
-        this.userId = userId;
-        this.clubId = clubId;
-    }
-}
 
+    @Column(name = "ano_id")
+    private Long anoId;
+}

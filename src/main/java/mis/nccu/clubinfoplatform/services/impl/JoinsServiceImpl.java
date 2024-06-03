@@ -1,16 +1,16 @@
-package mis.nccu.clubinfoplatform.services;
+package mis.nccu.clubinfoplatform.services.impl;
 
 import mis.nccu.clubinfoplatform.models.Follows;
 import mis.nccu.clubinfoplatform.repository.FollowsRepository;
+import mis.nccu.clubinfoplatform.services.FollowsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 @Service
-public class FollowsServiceImpl implements FollowsService {
+public class JoinsServiceImpl implements FollowsService {
     @Autowired
     FollowsRepository followsRepository;
 

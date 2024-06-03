@@ -36,7 +36,7 @@ public class ClubController {
 	}
 
 	@PostMapping("/update")
-	public ResponseEntity updateClub(@RequestBody ClubUpdateRequest clubUpdateRequest){
+	public ResponseEntity updateClubDetail(@RequestBody ClubUpdateRequest clubUpdateRequest){
 		clubService.updateClubDetail(clubUpdateRequest);
 		return ResponseEntity.ok(new MessageResponse("Club updated successfully!"));
 	}

@@ -1,8 +1,9 @@
-package mis.nccu.clubinfoplatform.services;
+package mis.nccu.clubinfoplatform.services.impl;
 
 import mis.nccu.clubinfoplatform.models.User;
 import mis.nccu.clubinfoplatform.payload.request.UserUpdateRequest;
 import mis.nccu.clubinfoplatform.repository.UserRepository;
+import mis.nccu.clubinfoplatform.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

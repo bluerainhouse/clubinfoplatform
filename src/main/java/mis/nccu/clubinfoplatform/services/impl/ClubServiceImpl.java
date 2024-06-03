@@ -1,4 +1,4 @@
-package mis.nccu.clubinfoplatform.services;
+package mis.nccu.clubinfoplatform.services.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,6 +7,7 @@ import mis.nccu.clubinfoplatform.models.vo.ClubData;
 import mis.nccu.clubinfoplatform.payload.request.ClubUpdateRequest;
 import mis.nccu.clubinfoplatform.payload.response.ClubDetailResponse;
 import mis.nccu.clubinfoplatform.repository.ClubRepository;
+import mis.nccu.clubinfoplatform.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
