@@ -1,15 +1,6 @@
 package mis.nccu.clubinfoplatform.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,21 +24,22 @@ public class Announcement {
     @Column(name = "club_id", nullable = false)
     private Long clubId;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "club_name")
+    private String clubName;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name = "content")
+    @Lob
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
     @Column(name = "date", nullable = false)
     private Date date;
 
-    public Announcement(Long clubId, Long userId, String title, String content, Date date) {
+    public Announcement(Long clubId, String clubName, String title, String content, Date date) {
         this.clubId = clubId;
-        this.userId = userId;
+        this.clubName = clubName;
         this.title = title;
         this.content = content;
         this.date = date;

@@ -16,8 +16,13 @@ public class StarClubServiceImpl implements StarClubService {
     StarClubRepository starClubRepository;
 
     @Override
-    public List<StarClub> getByUserIdAndClubId(Long userId, Long clubId) {
-        return starClubRepository.findByUserIdAndClubId(userId, clubId);
+    public StarClub getByUserIdAndClubId(Long userId, Long clubId) {
+        return starClubRepository.findFirstByUserIdAndClubId(userId, clubId);
+    }
+
+    @Override
+    public List<StarClub> getByUserId(Long userId) {
+        return starClubRepository.findByUserId(userId);
     }
 
     @Override

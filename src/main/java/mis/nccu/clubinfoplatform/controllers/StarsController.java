@@ -21,7 +21,7 @@ public class StarsController {
     StarsService starsService;
 
     @GetMapping(value = "/search")
-    public List<Stars> getByUserId(@RequestParam("userId") Long userId, @RequestParam("anoId") Long anoId) {
+    public Stars getByUserId(@RequestParam("userId") Long userId, @RequestParam("anoId") Long anoId) {
         return starsService.getByUserIdAndAnoId(userId, anoId);
     }
 

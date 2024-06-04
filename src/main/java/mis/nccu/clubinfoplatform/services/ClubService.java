@@ -11,6 +11,8 @@ public interface ClubService {
 
     void updateClubDetail(ClubUpdateRequest clubUpdateRequest);
 
+    List<Club> getStarClubs(Long userId);
+
     ClubDetailResponse getClubDetail(Long clubId);
     List<Club> getAllClubs();
 }

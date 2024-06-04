@@ -1,16 +1,23 @@
 package mis.nccu.clubinfoplatform.services;
 
+import mis.nccu.clubinfoplatform.models.Announcement;
 import mis.nccu.clubinfoplatform.models.Follows;
+import mis.nccu.clubinfoplatform.payload.request.AnoPostRequest;
+import mis.nccu.clubinfoplatform.payload.request.AnoPutRequest;
 
 import java.util.List;
 
 public interface AnnouncementService {
-    List<Follows> getByClubId(Long id);
+    List<Announcement> getAll();
 
-    Follows getById(Long id);
+    List<Announcement> getByUserId(Long userId);
 
-    void saveOrUpdate(Follows follows);
+    List<Announcement> getByClubIds(Long userId);
 
+    void save(AnoPostRequest anoPostRequest);
 
+    void update(Long id, AnoPutRequest anoPutRequest);
+
+    void delete(Long id);
 }
 

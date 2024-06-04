@@ -1,14 +1,9 @@
 package mis.nccu.clubinfoplatform.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
@@ -17,6 +12,8 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "club")
 public class Club {
 
@@ -34,6 +31,14 @@ public class Club {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "data")
+    @Lob
+    @Column(name = "data", columnDefinition = "TEXT")
     private String data;
+
+    public Club(String clubName, String fullName, String type, String data) {
+        this.clubName = clubName;
+        this.fullName = fullName;
+        this.type = type;
+        this.data = data;
+    }
 }

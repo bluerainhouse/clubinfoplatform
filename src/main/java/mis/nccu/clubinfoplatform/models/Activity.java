@@ -1,12 +1,16 @@
 package mis.nccu.clubinfoplatform.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "activity")
 public class Activity {
 
@@ -25,7 +29,7 @@ public class Activity {
     private String startTime;
 
     @Column(name = "end_date", nullable = false)
-    private Date endDate;
+    private String endDate;
 
     @Column(name = "end_time", nullable = false)
     private String endTime;
@@ -41,4 +45,16 @@ public class Activity {
 
     @Column(name = "fee")
     private String fee;
+
+    public Activity(Long clubId, String startDate, String startTime, String endDate, String endTime, String title, String detail, String type, String fee) {
+        this.clubId = clubId;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.endDate = endDate;
+        this.endTime = endTime;
+        this.title = title;
+        this.detail = detail;
+        this.type = type;
+        this.fee = fee;
+    }
 }

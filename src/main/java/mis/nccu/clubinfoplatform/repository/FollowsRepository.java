@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface FollowsRepository extends JpaRepository<Follows, Long> {
     List<Follows> findByUserId(Long userId);
-    List<Follows> findByUserIdAndActivityId(Long userId, Long activityId);
+    Follows findFirstByUserIdAndActivityId(Long userId, Long activityId);
 }

@@ -25,6 +25,11 @@ public class ClubController {
 		return clubService.getClubDetail(clubId);
 	}
 
+	@GetMapping("/starclub")
+	public List<Club> getStarClubs(@RequestParam("userId") Long userId) {
+		return clubService.getStarClubs(userId);
+	}
+
 	@GetMapping("/all")
 	public List<Club> getAllClubs() {
 		return clubService.getAllClubs();

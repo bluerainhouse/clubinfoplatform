@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/stars")
+@RequestMapping("/api/star-club")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class StarClubController {
     @Autowired
     StarClubService starClubService;
 
     @GetMapping(value = "/search")
-    public List<StarClub> getByUserId(@RequestParam("userId") Long userId, @RequestParam("clubId") Long clubId) {
+    public StarClub getByUserId(@RequestParam("userId") Long userId, @RequestParam("clubId") Long clubId) {
         return starClubService.getByUserIdAndClubId(userId, clubId);
     }
 

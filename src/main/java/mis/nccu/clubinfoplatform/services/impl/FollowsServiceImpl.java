@@ -21,13 +21,13 @@ public class FollowsServiceImpl implements FollowsService {
     }
 
     @Override
-    public Follows getById(Long id) {
-        return followsRepository.findById(id).orElseThrow(() -> new RuntimeException("找不到追蹤" + id));
+    public Follows getByUserIdAndActivityId(Long userId, Long activityId) {
+        return followsRepository.findFirstByUserIdAndActivityId(userId, activityId);
     }
 
     @Override
     public void update(Long id, FollowRequest followRequest) {
-        Follows follows = getById(id);
+        Follows follows = followsRepository.findById(id).orElseThrow(() -> new RuntimeException("找不到追蹤" + id));
         follows.setActivityId(followRequest.getActivityId());
         follows.setUserId(followRequest.getUserId());
         followsRepository.save(follows);

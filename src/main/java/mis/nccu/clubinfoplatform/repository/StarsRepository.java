@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface StarsRepository extends JpaRepository<Stars, Long> {
-    List<Stars> findByUserIdAndAnoId(Long userId, Long anoId);
+    Stars findFirstByUserIdAndAnoId(Long userId, Long anoId);
+
+    List<Stars> findByUserId(Long userId);
 }

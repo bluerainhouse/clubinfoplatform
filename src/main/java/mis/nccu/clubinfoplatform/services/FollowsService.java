@@ -8,7 +8,7 @@ import java.util.List;
 public interface FollowsService {
     List<Follows> getByUserId(Long userId);
 
-    Follows getById(Long id);
+    Follows getByUserIdAndActivityId(Long userId, Long activityId);
 
     void update(Long id, FollowRequest followRequest);
 

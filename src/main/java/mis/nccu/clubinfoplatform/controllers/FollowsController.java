@@ -18,13 +18,14 @@ public class FollowsController {
     FollowsService followsService;
 
     @GetMapping(value = "/search")
-    public List<Follows> getByUserId(@RequestParam("userId") Long userId) {
-        return followsService.getByUserId(userId);
+    public Follows getByUserIdAndActivityId(@RequestParam("userId") Long userId, @RequestParam("activityId") Long activityId) {
+        return followsService.getByUserIdAndActivityId(userId, activityId);
     }
 
     @PostMapping(value = "/")
-    public void insertFollows(@RequestBody FollowRequest followRequest) {
+    public ResponseEntity insertFollows(@RequestBody FollowRequest followRequest) {
         followsService.save(followRequest);
+        return ResponseEntity.ok(new MessageResponse("Follows saved successfully!"));
     }
 
     @PutMapping(value = "/{id}")

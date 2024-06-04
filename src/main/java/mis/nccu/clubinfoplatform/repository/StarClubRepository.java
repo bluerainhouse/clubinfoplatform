@@ -8,6 +8,8 @@ import java.util.List;
 
 @Repository
 public interface StarClubRepository extends JpaRepository<StarClub, Long> {
-    List<StarClub> findByUserIdAndClubId(Long userId, Long clubId);
+    StarClub findFirstByUserIdAndClubId(Long userId, Long clubId);
+
+    List<StarClub> findByUserId(Long userId);
 
 }

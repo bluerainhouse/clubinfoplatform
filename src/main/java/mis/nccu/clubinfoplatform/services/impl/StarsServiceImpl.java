@@ -17,8 +17,13 @@ public class StarsServiceImpl implements StarsService {
     StarsRepository starsRepository;
 
     @Override
-    public List<Stars> getByUserIdAndAnoId(Long userId, Long anoId) {
-        return starsRepository.findByUserIdAndAnoId(userId, anoId);
+    public Stars getByUserIdAndAnoId(Long userId, Long anoId) {
+        return starsRepository.findFirstByUserIdAndAnoId(userId, anoId);
+    }
+
+    @Override
+    public List<Stars> getByUserId(Long userId) {
+        return starsRepository.findByUserId(userId);
     }
 
     @Override

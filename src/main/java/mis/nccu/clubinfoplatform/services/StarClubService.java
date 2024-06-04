@@ -6,7 +6,9 @@ import mis.nccu.clubinfoplatform.payload.request.StarClubRequest;
 import java.util.List;
 
 public interface StarClubService {
-    List<StarClub> getByUserIdAndClubId(Long userId, Long clubId);
+    StarClub getByUserIdAndClubId(Long userId, Long clubId);
+
+    List<StarClub> getByUserId(Long userId);
 
     void save(StarClubRequest starClubRequest);
 
