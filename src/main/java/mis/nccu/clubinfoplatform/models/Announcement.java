@@ -24,9 +24,6 @@ public class Announcement {
     @Column(name = "club_id", nullable = false)
     private Long clubId;
 
-    @Column(name = "club_name")
-    private String clubName;
-
     @Column(name = "title")
     private String title;
 
@@ -35,11 +32,10 @@ public class Announcement {
     private String content;
 
     @Column(name = "date", nullable = false)
-    private Date date;
+    private String date;
 
-    public Announcement(Long clubId, String clubName, String title, String content, Date date) {
+    public Announcement(Long clubId, String title, String content, String date) {
         this.clubId = clubId;
-        this.clubName = clubName;
         this.title = title;
         this.content = content;
         this.date = date;

@@ -6,6 +6,8 @@ import mis.nccu.clubinfoplatform.models.StarClub;
 import mis.nccu.clubinfoplatform.models.Stars;
 import mis.nccu.clubinfoplatform.payload.request.AnoPostRequest;
 import mis.nccu.clubinfoplatform.payload.request.AnoPutRequest;
+import mis.nccu.clubinfoplatform.payload.response.AnoAllResponse;
+import mis.nccu.clubinfoplatform.payload.response.AnoOneResponse;
 import mis.nccu.clubinfoplatform.repository.AnnouncementRepository;
 import mis.nccu.clubinfoplatform.repository.ClubRepository;
 import mis.nccu.clubinfoplatform.repository.StarClubRepository;
@@ -33,27 +35,44 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     StarClubRepository starClubRepository;
 
     @Override
-    public List<Announcement> getAll() {
-        return announcementRepository.findAllByOrderByDateDesc();
+    public List<AnoAllResponse> getAll() {
+        List<Announcement> announcements = announcementRepository.findAllByOrderByDateDesc();
+        return announcements.stream().map(announcement -> {
+            String clubName = clubRepository.findById(announcement.getClubId()).map(Club::getFullName).orElse("error");
+            return new AnoAllResponse(announcement.getId(), announcement.getTitle(), announcement.getDate(), clubName);
+        }).collect(Collectors.toList());
     }
 
     @Override
-    public List<Announcement> getByUserId(Long userId) {
+    public AnoOneResponse getById(Long id) {
+        Announcement announcement = announcementRepository.findById(id).orElseThrow(() -> new RuntimeException("No Ano Found!"));
+        String clubName = clubRepository.findById(announcement.getClubId()).map(Club::getFullName).orElse("error");
+        return new AnoOneResponse(announcement.getTitle(), announcement.getContent(), announcement.getDate(), clubName);
+    }
+
+    @Override
+    public List<AnoAllResponse> getByUserId(Long userId) {
         List<Long> anoIds = starsRepository.findByUserId(userId).stream().map(Stars::getAnoId).collect(Collectors.toList());
-        return announcementRepository.findByIdIn(anoIds);
+        List<Announcement> announcements = announcementRepository.findByIdIn(anoIds);
+        return announcements.stream().map(announcement -> {
+            String clubName = clubRepository.findById(announcement.getClubId()).map(Club::getFullName).orElse("error");
+            return new AnoAllResponse(announcement.getId(), announcement.getTitle(), announcement.getDate(), clubName);
+        }).collect(Collectors.toList());
     }
 
     @Override
-    public List<Announcement> getByClubIds(Long userId) {
+    public List<AnoAllResponse> getByClubIds(Long userId) {
         List<Long> clubIds = starClubRepository.findByUserId(userId).stream().map(StarClub::getClubId).collect(Collectors.toList());
-        return announcementRepository.findByClubIdInOrderByDateDesc(clubIds);
+        List<Announcement> announcements = announcementRepository.findByClubIdInOrderByDateDesc(clubIds);
+        return announcements.stream().map(announcement -> {
+            String clubName = clubRepository.findById(announcement.getClubId()).map(Club::getFullName).orElse("error");
+            return new AnoAllResponse(announcement.getId(), announcement.getTitle(), announcement.getDate(), clubName);
+        }).collect(Collectors.toList());
     }
 
     @Override
     public void save(AnoPostRequest anoPostRequest) {
-        Club club = clubRepository.findById(anoPostRequest.getClubId()).orElseThrow(() -> new RuntimeException("No Club Found!"));
-        announcementRepository.save(new Announcement(club.getId(), club.getClubName(),
-                anoPostRequest.getTitle(), anoPostRequest.getContent(), anoPostRequest.getDate()));
+        announcementRepository.save(new Announcement(anoPostRequest.getClubId(), anoPostRequest.getTitle(), anoPostRequest.getContent(), anoPostRequest.getDate()));
     }
 
     @Override

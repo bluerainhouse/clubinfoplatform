@@ -29,6 +29,11 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public Activity geyById(Long actId) {
+        return activityRepository.findById(actId).orElseThrow(() -> new RuntimeException("No Act Found!"));
+    }
+
+    @Override
     public List<Activity> getByActIds(Long userId) {
        List<Long> activityIds = followsRepository.findByUserId(userId).stream().map(Follows::getActivityId).collect(Collectors.toList());
         return activityRepository.findByIdIn(activityIds);

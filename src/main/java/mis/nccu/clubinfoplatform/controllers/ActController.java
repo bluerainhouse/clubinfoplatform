@@ -23,6 +23,11 @@ public class ActController {
         return activityService.getByClubIdAndType(clubId, type);
     }
 
+    @GetMapping(value = "/get")
+    public Activity getActivity(@RequestParam("actId") Long actId) {
+        return activityService.geyById(actId);
+    }
+
     @GetMapping(value = "/follows")
     public List<Activity> getByStarClub(@RequestParam("userId") Long userId) {
         return activityService.getByActIds(userId);

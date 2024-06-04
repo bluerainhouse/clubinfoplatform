@@ -4,15 +4,19 @@ import mis.nccu.clubinfoplatform.models.Announcement;
 import mis.nccu.clubinfoplatform.models.Follows;
 import mis.nccu.clubinfoplatform.payload.request.AnoPostRequest;
 import mis.nccu.clubinfoplatform.payload.request.AnoPutRequest;
+import mis.nccu.clubinfoplatform.payload.response.AnoAllResponse;
+import mis.nccu.clubinfoplatform.payload.response.AnoOneResponse;
 
 import java.util.List;
 
 public interface AnnouncementService {
-    List<Announcement> getAll();
+    List<AnoAllResponse> getAll();
 
-    List<Announcement> getByUserId(Long userId);
+    AnoOneResponse getById(Long id);
 
-    List<Announcement> getByClubIds(Long userId);
+    List<AnoAllResponse> getByUserId(Long userId);
+
+    List<AnoAllResponse> getByClubIds(Long userId);
 
     void save(AnoPostRequest anoPostRequest);
 

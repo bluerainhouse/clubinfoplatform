@@ -3,6 +3,8 @@ package mis.nccu.clubinfoplatform.controllers;// package mis.nccu.clubinfoplatfo
 import mis.nccu.clubinfoplatform.models.Announcement;
 import mis.nccu.clubinfoplatform.payload.request.AnoPostRequest;
 import mis.nccu.clubinfoplatform.payload.request.AnoPutRequest;
+import mis.nccu.clubinfoplatform.payload.response.AnoAllResponse;
+import mis.nccu.clubinfoplatform.payload.response.AnoOneResponse;
 import mis.nccu.clubinfoplatform.payload.response.MessageResponse;
 import mis.nccu.clubinfoplatform.services.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,22 @@ public class AnoController {
     AnnouncementService announcementService;
 
     @GetMapping(value = "/search")
-    public List<Announcement> getByUserId(@RequestParam("userId") Long userId) {
+    public List<AnoAllResponse> getByUserId(@RequestParam("userId") Long userId) {
         return announcementService.getByUserId(userId);
     }
 
+    @GetMapping(value = "/get")
+    public AnoOneResponse getById(@RequestParam("anoId") Long anoId) {
+        return announcementService.getById(anoId);
+    }
+
     @GetMapping(value = "/starClub")
-    public List<Announcement> getByStarClub(@RequestParam("userId") Long userId) {
+    public List<AnoAllResponse> getByStarClub(@RequestParam("userId") Long userId) {
         return announcementService.getByClubIds(userId);
     }
 
     @GetMapping(value = "/all")
-    public List<Announcement> getAll() {
+    public List<AnoAllResponse> getAll() {
         return announcementService.getAll();
     }
 

@@ -1,22 +1,22 @@
-package mis.nccu.clubinfoplatform.payload.request;
+package mis.nccu.clubinfoplatform.payload.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
-public class AnoPutRequest {
+public class AnoOneResponse {
+
     @JsonProperty("title")
     private String title;
 
     @JsonProperty("content")
     private String content;
 
-    @NotBlank
     @JsonProperty("date")
     private String date;
+
+    @JsonProperty("clubName")
+    private String clubName;
 }

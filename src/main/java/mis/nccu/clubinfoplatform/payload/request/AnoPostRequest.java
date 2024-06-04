@@ -22,5 +22,5 @@ public class AnoPostRequest {
 
     @NotBlank
     @JsonProperty("date")
-    private Date date;
+    private String date;
 }

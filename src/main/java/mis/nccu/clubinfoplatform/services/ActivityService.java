@@ -12,6 +12,8 @@ import java.util.List;
 public interface ActivityService {
     List<Activity> getByClubIdAndType(Long id, String type);
 
+    Activity geyById(Long actId);
+
     List<Activity> getByActIds(Long userId);
 
     Activity getNewewstActivity(Long clubId, String type);
