@@ -11,7 +11,7 @@ public interface StarsService {
 
     List<Stars> getByUserId(Long userId);
 
-    void save(StarRequest starRequest);
+    Stars save(StarRequest starRequest);
 
     void delete(Long id);
 

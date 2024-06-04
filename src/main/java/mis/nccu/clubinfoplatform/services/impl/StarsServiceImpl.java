@@ -27,8 +27,8 @@ public class StarsServiceImpl implements StarsService {
     }
 
     @Override
-    public void save(StarRequest starRequest) {
-        starsRepository.save(new Stars(starRequest.getUserId(), starRequest.getAnoId()));
+    public Stars save(StarRequest starRequest) {
+        return starsRepository.save(new Stars(starRequest.getUserId(), starRequest.getAnoId()));
     }
 
     @Override

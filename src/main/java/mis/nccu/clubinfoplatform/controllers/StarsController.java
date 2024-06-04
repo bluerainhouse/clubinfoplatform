@@ -26,9 +26,8 @@ public class StarsController {
     }
 
     @PostMapping(value = "/")
-    public ResponseEntity insertStars(@RequestBody StarRequest starRequest) {
-        starsService.save(starRequest);
-        return ResponseEntity.ok(new MessageResponse("Stars saved successfully!"));
+    public Stars insertStars(@RequestBody StarRequest starRequest) {
+        return starsService.save(starRequest);
     }
 
     @DeleteMapping(value = "/{id}")
