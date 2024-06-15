@@ -23,9 +23,14 @@ public class FollowsController {
     }
 
     @PostMapping(value = "/")
-    public ResponseEntity insertFollows(@RequestBody FollowRequest followRequest) {
-        followsService.save(followRequest);
-        return ResponseEntity.ok(new MessageResponse("Follows saved successfully!"));
+    public Follows insertFollows(@RequestBody FollowRequest followRequest) {
+        return followsService.save(followRequest);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        followsService.delete(id);
+        return ResponseEntity.ok(new MessageResponse("Follows deleted successfully!"));
     }
 
     @PutMapping(value = "/{id}")

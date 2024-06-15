@@ -23,9 +23,8 @@ public class StarClubController {
     }
 
     @PostMapping(value = "/")
-    public ResponseEntity insertStars(@RequestBody StarClubRequest starClubRequest) {
-        starClubService.save(starClubRequest);
-        return ResponseEntity.ok(new MessageResponse("Stars saved successfully!"));
+    public StarClub insertStars(@RequestBody StarClubRequest starClubRequest) {
+        return starClubService.save(starClubRequest);
     }
 
     @DeleteMapping(value = "/{id}")

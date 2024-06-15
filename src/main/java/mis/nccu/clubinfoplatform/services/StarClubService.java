@@ -10,7 +10,7 @@ public interface StarClubService {
 
     List<StarClub> getByUserId(Long userId);
 
-    void save(StarClubRequest starClubRequest);
+    StarClub save(StarClubRequest starClubRequest);
 
     void delete(Long id);
 }

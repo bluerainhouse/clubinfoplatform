@@ -1,17 +1,11 @@
 package mis.nccu.clubinfoplatform.services.impl;
 
-import mis.nccu.clubinfoplatform.models.Announcement;
-import mis.nccu.clubinfoplatform.models.Club;
-import mis.nccu.clubinfoplatform.models.StarClub;
-import mis.nccu.clubinfoplatform.models.Stars;
+import mis.nccu.clubinfoplatform.models.*;
 import mis.nccu.clubinfoplatform.payload.request.AnoPostRequest;
 import mis.nccu.clubinfoplatform.payload.request.AnoPutRequest;
 import mis.nccu.clubinfoplatform.payload.response.AnoAllResponse;
 import mis.nccu.clubinfoplatform.payload.response.AnoOneResponse;
-import mis.nccu.clubinfoplatform.repository.AnnouncementRepository;
-import mis.nccu.clubinfoplatform.repository.ClubRepository;
-import mis.nccu.clubinfoplatform.repository.StarClubRepository;
-import mis.nccu.clubinfoplatform.repository.StarsRepository;
+import mis.nccu.clubinfoplatform.repository.*;
 import mis.nccu.clubinfoplatform.services.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +27,9 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
     @Autowired
     StarClubRepository starClubRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public List<AnoAllResponse> getAll() {
@@ -63,6 +60,10 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     @Override
     public List<AnoAllResponse> getByClubIds(Long userId) {
         List<Long> clubIds = starClubRepository.findByUserId(userId).stream().map(StarClub::getClubId).collect(Collectors.toList());
+        Long myClubId = userRepository.findById(userId).map(User::getClubId).orElseThrow(() -> new RuntimeException("No User Found!"));
+        if (!clubIds.contains(myClubId)){
+            clubIds.add(myClubId);
+        }
         List<Announcement> announcements = announcementRepository.findByClubIdInOrderByDateDesc(clubIds);
         return announcements.stream().map(announcement -> {
             String clubName = clubRepository.findById(announcement.getClubId()).map(Club::getFullName).orElse("error");

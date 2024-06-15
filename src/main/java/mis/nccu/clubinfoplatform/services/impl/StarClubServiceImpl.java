@@ -26,8 +26,8 @@ public class StarClubServiceImpl implements StarClubService {
     }
 
     @Override
-    public void save(StarClubRequest starClubRequest) {
-        starClubRepository.save(new StarClub(starClubRequest.getUserId(), starClubRequest.getClubId()));
+    public StarClub save(StarClubRequest starClubRequest) {
+        return starClubRepository.save(new StarClub(starClubRequest.getUserId(), starClubRequest.getClubId()));
     }
 
     @Override

@@ -34,8 +34,14 @@ public class FollowsServiceImpl implements FollowsService {
     }
 
     @Override
-    public void save(FollowRequest followRequest) {
-        followsRepository.save(new Follows(followRequest.getUserId(), followRequest.getActivityId()));
+    public Follows save(FollowRequest followRequest) {
+        return followsRepository.save(new Follows(followRequest.getUserId(), followRequest.getActivityId()));
+    }
+
+    @Override
+    public void delete(Long id) {
+        Follows follows = followsRepository.findById(id).orElseThrow(() -> new RuntimeException("找不到追蹤" + id));
+        followsRepository.delete(follows);
     }
 
 }

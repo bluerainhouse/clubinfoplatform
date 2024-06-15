@@ -12,8 +12,8 @@ public interface FollowsService {
 
     void update(Long id, FollowRequest followRequest);
 
-    void save(FollowRequest followRequest);
+    Follows save(FollowRequest followRequest);
 
-
+    void delete(Long id);
 }
 
