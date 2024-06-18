@@ -6,13 +6,17 @@ import mis.nccu.clubinfoplatform.payload.request.ActPostRequest;
 import mis.nccu.clubinfoplatform.payload.request.ActPutRequest;
 import mis.nccu.clubinfoplatform.payload.request.AnoPostRequest;
 import mis.nccu.clubinfoplatform.payload.request.AnoPutRequest;
+import mis.nccu.clubinfoplatform.payload.response.ActAllResponse;
+import mis.nccu.clubinfoplatform.payload.response.ActOneResponse;
 
 import java.util.List;
 
 public interface ActivityService {
-    List<Activity> getByClubIdAndType(Long id, String type);
+    List<ActAllResponse> getByType(String type);
 
-    Activity geyById(Long actId);
+    List<ActAllResponse> getAll();
+
+    ActOneResponse geyById(Long actId);
 
     List<Activity> getByActIds(Long userId);
 

@@ -3,6 +3,8 @@ package mis.nccu.clubinfoplatform.controllers;
 import mis.nccu.clubinfoplatform.models.Activity;
 import mis.nccu.clubinfoplatform.payload.request.ActPostRequest;
 import mis.nccu.clubinfoplatform.payload.request.ActPutRequest;
+import mis.nccu.clubinfoplatform.payload.response.ActAllResponse;
+import mis.nccu.clubinfoplatform.payload.response.ActOneResponse;
 import mis.nccu.clubinfoplatform.payload.response.MessageResponse;
 import mis.nccu.clubinfoplatform.services.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,17 @@ public class ActController {
     ActivityService activityService;
 
     @GetMapping(value = "/search")
-    public List<Activity> getByClubIdAndType(@RequestParam("clubId") Long clubId, String type) {
-        return activityService.getByClubIdAndType(clubId, type);
+    public List<ActAllResponse> getByClubIdAndType(@RequestParam("type") String type) {
+        return activityService.getByType(type);
+    }
+
+    @GetMapping(value = "/all")
+    public List<ActAllResponse> getAll(){
+        return activityService.getAll();
     }
 
     @GetMapping(value = "/get")
-    public Activity getActivity(@RequestParam("actId") Long actId) {
+    public ActOneResponse getActivity(@RequestParam("actId") Long actId) {
         return activityService.geyById(actId);
     }
 

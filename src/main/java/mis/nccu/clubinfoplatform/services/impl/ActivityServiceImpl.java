@@ -1,10 +1,14 @@
 package mis.nccu.clubinfoplatform.services.impl;
 
 import mis.nccu.clubinfoplatform.models.Activity;
+import mis.nccu.clubinfoplatform.models.Club;
 import mis.nccu.clubinfoplatform.models.Follows;
 import mis.nccu.clubinfoplatform.payload.request.ActPostRequest;
 import mis.nccu.clubinfoplatform.payload.request.ActPutRequest;
+import mis.nccu.clubinfoplatform.payload.response.ActAllResponse;
+import mis.nccu.clubinfoplatform.payload.response.ActOneResponse;
 import mis.nccu.clubinfoplatform.repository.ActivityRepository;
+import mis.nccu.clubinfoplatform.repository.ClubRepository;
 import mis.nccu.clubinfoplatform.repository.FollowsRepository;
 import mis.nccu.clubinfoplatform.services.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +27,35 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     FollowsRepository followsRepository;
 
+    @Autowired
+    ClubRepository clubRepository;
+
     @Override
-    public List<Activity> getByClubIdAndType(Long id, String type) {
-        return activityRepository.findByClubIdAndType(id, type);
+    public List<ActAllResponse> getByType(String type) {
+        return activityRepository.findByType(type).stream().map(activity -> {
+            String clubName = clubRepository.findById(activity.getClubId()).map(Club::getFullName).orElseThrow(() -> new RuntimeException("No Club Found!"));
+            return new ActAllResponse(activity.getId(), activity.getTitle(), activity.getType(), clubName);
+        }).collect(Collectors.toList());
     }
 
     @Override
-    public Activity geyById(Long actId) {
-        return activityRepository.findById(actId).orElseThrow(() -> new RuntimeException("No Act Found!"));
+    public List<ActAllResponse> getAll() {
+        return activityRepository.findAll().stream().map(activity -> {
+            String clubName = clubRepository.findById(activity.getClubId()).map(Club::getFullName).orElseThrow(() -> new RuntimeException("No Club Found!"));
+            return new ActAllResponse(activity.getId(), activity.getTitle(), activity.getType(), clubName);
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public ActOneResponse geyById(Long actId) {
+        Activity activity = activityRepository.findById(actId).orElseThrow(() -> new RuntimeException("No Act Found!"));
+        String clubName = clubRepository.findById(activity.getClubId()).map(Club::getFullName).orElseThrow(() -> new RuntimeException("No Club Found!"));
+        return new ActOneResponse(clubName, activity.getStartDate(), activity.getStartTime(), activity.getEndDate(), activity.getEndTime(), activity.getTitle(), activity.getDetail(), activity.getType(), activity.getFee());
     }
 
     @Override
     public List<Activity> getByActIds(Long userId) {
-       List<Long> activityIds = followsRepository.findByUserId(userId).stream().map(Follows::getActivityId).collect(Collectors.toList());
+        List<Long> activityIds = followsRepository.findByUserId(userId).stream().map(Follows::getActivityId).collect(Collectors.toList());
         return activityRepository.findByIdIn(activityIds);
     }
 

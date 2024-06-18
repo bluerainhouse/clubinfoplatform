@@ -8,11 +8,11 @@ import java.util.List;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    List<Activity> findByClubIdAndType(Long id, String type);
+    List<Activity> findByType(String type);
 
     List<Activity> findByIdIn(List<Long> id);
 
-    Activity findFirstByClubIdAndTypeOrderByStartDateDesc(Long clubIdm, String type);
+    Activity findFirstByClubIdAndTypeOrderByStartDateDesc(Long clubId, String type);
 
 
 }
